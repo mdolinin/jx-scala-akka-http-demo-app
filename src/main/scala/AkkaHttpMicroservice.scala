@@ -7,6 +7,7 @@ import akka.http.scaladsl.model.{HttpResponse, HttpRequest}
 import akka.http.scaladsl.server.Directives._
 import akka.stream.{ActorMaterializer, Materializer}
 import akka.stream.scaladsl.{Flow, Sink, Source}
+import ch.megard.akka.http.cors.scaladsl.CorsDirectives._
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
 import scala.concurrent.{ExecutionContextExecutor, Future}
@@ -31,7 +32,7 @@ trait Service extends Protocols {
   lazy val ipApiConnectionFlow: Flow[HttpRequest, HttpResponse, Any] =
     Http().outgoingConnection(config.getString("services.ip-api.host"), config.getInt("services.ip-api.port"))
 
-  val routes = {
+  val routes = cors() {
     logRequestResult("akka-http-microservice") {
       path("health") {
         (get) {

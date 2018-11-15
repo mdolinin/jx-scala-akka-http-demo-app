@@ -18,6 +18,7 @@ libraryDependencies ++= {
     "com.typesafe.akka" %% "akka-http" % akkaHttpV,
     "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpV,
     "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpV,
+    "ch.megard"         %% "akka-http-cors" % "0.3.1",
     "org.scalatest"     %% "scalatest" % scalaTestV % "test"
   )
 }
